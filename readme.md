@@ -1,8 +1,10 @@
 # PowerBlock-Emteria
 
-This repository contains the installer for the PowerBlock driver for [Emteria](https://emteria.com/).
+The [PowerBlock](https://blog.petrockblock.com/powerblock/) is an extension board for the Raspberry Pi. The key feature of the PowerBlock is a safe power button functionality together with LED status indication.
 
-## Pre-Requisites
+This repository contains the installer for the [PowerBlock](https://blog.petrockblock.com/powerblock/) driver for [Emteria](https://emteria.com/), an Android distribution. 
+
+## Pre-Requisites for Driver Installation
 
 1. The installation script needs the Android SDK Platform Tools. You can download them from [https://developer.android.com/studio/releases/platform-tools](https://developer.android.com/studio/releases/platform-tools).
 
