@@ -4,6 +4,8 @@ The [PowerBlock](https://blog.petrockblock.com/powerblock/) is an extension boar
 
 This repository contains the installer for the [PowerBlock](https://blog.petrockblock.com/powerblock/) driver for [Emteria](https://emteria.com/), an Android distribution. 
 
+![PowerBlock attached to Raspberry Pi](powerblock_thumb.jpg)
+
 ## Pre-Requisites for Driver Installation
 
 1. The installation script needs the Android SDK Platform Tools. You can download them from [https://developer.android.com/studio/releases/platform-tools](https://developer.android.com/studio/releases/platform-tools).
