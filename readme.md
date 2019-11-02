@@ -6,17 +6,21 @@ This repository contains the installer for the [PowerBlock](https://blog.petrock
 
 ![PowerBlock attached to Raspberry Pi](powerblock_thumb.jpg)
 
+
 ## Pre-Requisites for Driver Installation
 
-1. The installation script needs the Android SDK Platform Tools. You can download them from [https://developer.android.com/studio/releases/platform-tools](https://developer.android.com/studio/releases/platform-tools).
+1. The installation script needs the __Android SDK Platform Tools__. You can download them from [https://developer.android.com/studio/releases/platform-tools](https://developer.android.com/studio/releases/platform-tools).
 
 2. When you have installed the SDK Platform Tools, you need to set the variable `ADB_TOOL` in the file `installDriver.bat` to the correct path of your ADB installation.
 
-3. You need to enable 'Enable ADB over Ethernet' in your Emteria installation: Open 'Settings', 'Emteria'. Activate the option 'Enable ADB over Ethernet'.
+3. Furtheremore, you need to set the variable `IP_OF_DEVICE`in the file `ìnstallDriver.bat` to the correct IP address of your device.
+
+4. You need to enable 'Enable ADB over Ethernet' in your Emteria installation: Open 'Settings', 'Emteria'. Activate the option 'Enable ADB over Ethernet'.
+
 
 ## Installation Instructions
 
-1. If you have not done so already, make sure to do all the described steps from the Section "Pre-Requesites" above.
+1. If you have not done so already, make sure to do all the described steps from the Section __"Pre-Requesites"__ above.
 
 2. Execute the batch file `installDriver.bat`.
 
