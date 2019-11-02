@@ -13,7 +13,7 @@ This repository contains the installer for the [PowerBlock](https://blog.petrock
 
 2. When you have installed the SDK Platform Tools, you need to set the variable `ADB_TOOL` in the file `installDriver.bat` to the correct path of your ADB installation.
 
-3. Furtheremore, you need to set the variable `IP_OF_DEVICE`in the file `ìnstallDriver.bat` to the correct IP address of your device.
+3. Furtheremore, you need to set the variable `IP_OF_DEVICE`in the file `installDriver.bat` to the correct IP address of your device.
 
 4. You need to enable 'Enable ADB over Ethernet' in your Emteria installation: Open 'Settings', 'Emteria'. Activate the option 'Enable ADB over Ethernet'.
 
