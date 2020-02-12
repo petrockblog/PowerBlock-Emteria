@@ -5,6 +5,8 @@
 # Type: permanent
 ### END INIT INFO
 
+VERSION_NUMBER="1.1.0"
+
 # Common path for all GPIO access
 BASE_GPIO_PATH=/sys/class/gpio
 
@@ -72,6 +74,8 @@ stopRunning() {
 
 trap stopRunning SIGINT  # Ctrl-C handler for clean shutdown
 
+echo "[PowerBlock] Service started, version $VERSION_NUMBER"
+log -p v -t "PowerBlock" "Service started, version $VERSION_NUMBER"
 while [ $doRun ]
 do
   sleep 1
@@ -79,6 +83,7 @@ do
   if [ $currentValue -eq $STATE_ON ]; then
     if [ $isShutdownRunning -eq 0 ]; then
       echo "[PowerBlock] Shutdown signal detected."
+      log -p v -t "PowerBlock" "Shutdown signal detected."
       doShutdown
       isShutdownRunning=1
     fi
