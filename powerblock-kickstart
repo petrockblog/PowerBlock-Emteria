@@ -1,8 +1,0 @@
-#!/system/bin/sh
-
-### BEGIN INIT INFO
-# Exec: boot
-# Type: permanent
-### END INIT INFO
-
-nohup /system/bin/powerblockservice &>/dev/null &

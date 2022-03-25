@@ -1,0 +1,12 @@
+# /etc/init/powerblock.rc
+
+service powerblock /system/bin/powerblockservice
+    seclabel u:r:init:s0
+    user root
+    group root
+    oneshot
+    disabled
+
+# start the service when boot is completed
+on property:sys.boot_completed=1
+    start powerblock

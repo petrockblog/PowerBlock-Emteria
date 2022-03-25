@@ -29,12 +29,10 @@ call %ADB_TOOL% shell chmod g=r /system/bin/powerblockservice
 call %ADB_TOOL% shell chmod o=r /system/bin/powerblockservice
 
 rem Install kick-starter script
-rem echo Installing kick-starter script
-call %ADB_TOOL% push powerblock-kickstart /data/init.d/powerblock-kickstart
-call %ADB_TOOL% shell chown system:shell /data/init.d/powerblock-kickstart
-call %ADB_TOOL% shell chmod u=rwx /data/init.d/powerblock-kickstart
-call %ADB_TOOL% shell chmod g=r /data/init.d/powerblock-kickstart
-call %ADB_TOOL% shell chmod o=r /data/init.d/powerblock-kickstart
+call %ADB_TOOL% push powerblock.rc /etc/init/powerblock.rc
+call %ADB_TOOL% shell chown 0.0 /etc/init/powerblock.rc
+call %ADB_TOOL% shell chmod 0644 /etc/init/powerblock.rc
+call %ADB_TOOL% shell chcon u:object_r:system_file:s0 /etc/init/powerblock.rc
 
 echo Disconnecting from device
 call %ADB_TOOL% disconnect
