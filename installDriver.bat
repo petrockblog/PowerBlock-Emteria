@@ -7,8 +7,8 @@ rem Adapt the following variables according to your setup
 rem You might need to install the Android SDK Platform Tools to get the ADB tool
 rem You can get it at https://developer.android.com/studio/releases/platform-tools
 
-SET ADB_TOOL=C:\Users\florian\Desktop\platform-tools\adb.exe
-SET IP_OF_DEVICE=192.168.0.115
+SET ADB_TOOL=C:\Users\username\AppData\Local\Android\Sdk\platform-tools\adb.exe
+SET IP_OF_DEVICE=192.168.0.187
 SET ADB_PORT=5555
 
 
