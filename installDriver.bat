@@ -1,7 +1,8 @@
 @echo off
 
 rem This script installs the PowerBlock service on an
-rem Emteria installation.
+rem Emteria installation. 
+rem Android 13 is the minimum acceptable version.
 
 rem Adapt the following variables according to your setup
 rem You might need to install the Android SDK Platform Tools to get the ADB tool
@@ -17,22 +18,18 @@ rem DO NOT MAKE ANY MODIFICATIONS BELOW THIS LINE
 rem Initialization
 echo Connecting to device
 call %ADB_TOOL% connect %IP_OF_DEVICE%:%ADB_PORT%
-call %ADB_TOOL% root
-call %ADB_TOOL% remount
 
 rem Install service shell script
 echo Installing service shell script
-call %ADB_TOOL% push powerblockservice /system/bin/powerblockservice
-call %ADB_TOOL% shell chown system:shell /system/bin/powerblockservice
-call %ADB_TOOL% shell chmod u=rwx /system/bin/powerblockservice
-call %ADB_TOOL% shell chmod g=r /system/bin/powerblockservice
-call %ADB_TOOL% shell chmod o=r /system/bin/powerblockservice
+adb shell sushell <<EOF
+cat > /data/init.d/powerblock <<CONTENT
+$(type powerblock)
+CONTENT
 
-rem Install kick-starter script
-call %ADB_TOOL% push powerblock.rc /etc/init/powerblock.rc
-call %ADB_TOOL% shell chown 0.0 /etc/init/powerblock.rc
-call %ADB_TOOL% shell chmod 0644 /etc/init/powerblock.rc
-call %ADB_TOOL% shell chcon u:object_r:system_file:s0 /etc/init/powerblock.rc
+EOF
+
+call %ADB_TOOL% shell sushell -c chown root:system /system/bin/powerblockservice
+call %ADB_TOOL% shell sushell -c chmod 0755 /data/init.d/powerblock
 
 call %ADB_TOOL% shell reboot
 
