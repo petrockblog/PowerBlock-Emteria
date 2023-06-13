@@ -21,8 +21,6 @@ call %ADB_TOOL% connect %IP_OF_DEVICE%:%ADB_PORT%
 
 rem Install service shell script
 echo Installing service shell script
-
-@echo on
 call %ADB_TOOL% shell "sushell -c 'echo \#!/system/bin/sh > /data/init.d/powerblock'"
 call %ADB_TOOL% shell "sushell -c 'echo >> /data/init.d/powerblock'"
 call %ADB_TOOL% shell "sushell -c 'echo \#\#\# BEGIN INIT INFO >> /data/init.d/powerblock'"
@@ -31,6 +29,7 @@ call %ADB_TOOL% shell "sushell -c 'echo \# Process: new >> /data/init.d/powerblo
 call %ADB_TOOL% shell "sushell -c 'echo \### END INIT INFO >> /data/init.d/powerblock'"
 call %ADB_TOOL% shell "sushell -c 'echo  >> /data/init.d/powerblock'"
 call %ADB_TOOL% shell "sushell -c 'echo VERSION_NUMBER="1.2.0" >> /data/init.d/powerblock'"
+echo 10%%
 call %ADB_TOOL% shell "sushell -c 'echo  >> /data/init.d/powerblock'"
 call %ADB_TOOL% shell "sushell -c 'echo # Common path for all GPIO access >> /data/init.d/powerblock'"
 call %ADB_TOOL% shell "sushell -c 'echo BASE_GPIO_PATH=/sys/class/gpio >> /data/init.d/powerblock'"
@@ -45,6 +44,7 @@ call %ADB_TOOL% shell "sushell -c 'echo STATE_OFF="0" >> /data/init.d/powerblock
 call %ADB_TOOL% shell "sushell -c 'echo  >> /data/init.d/powerblock'"
 call %ADB_TOOL% shell "sushell -c 'echo doRun=\$STATE_ON >> /data/init.d/powerblock'"
 call %ADB_TOOL% shell "sushell -c 'echo  >> /data/init.d/powerblock'"
+echo 25%%
 call %ADB_TOOL% shell "sushell -c 'echo \# Exports a pin if not already exported >> /data/init.d/powerblock'"
 call %ADB_TOOL% shell "sushell -c 'echo \# Parameter \$1: pin number >> /data/init.d/powerblock'"
 call %ADB_TOOL% shell "sushell -c 'echo exportPin\(\) \{ >> /data/init.d/powerblock'"
@@ -69,6 +69,7 @@ call %ADB_TOOL% shell "sushell -c 'echo \# Set value of a pin >> /data/init.d/po
 call %ADB_TOOL% shell "sushell -c 'echo \# Parameter \$1: pin number >> /data/init.d/powerblock'"
 call %ADB_TOOL% shell "sushell -c 'echo \# Parameter \$2: output value. Can be 0 or 1 >> /data/init.d/powerblock'"
 call %ADB_TOOL% shell "sushell -c 'echo setPinValue\(\) \{ >> /data/init.d/powerblock'"
+echo 50%%
 call %ADB_TOOL% shell "sushell -c 'echo echo \"\$2\" \> \"\$BASE_GPIO_PATH/gpio\$1/value\" >> /data/init.d/powerblock'"
 call %ADB_TOOL% shell "sushell -c 'echo \} >> /data/init.d/powerblock'"
 call %ADB_TOOL% shell "sushell -c 'echo  >> /data/init.d/powerblock'"
@@ -88,6 +89,7 @@ call %ADB_TOOL% shell "sushell -c 'echo exportPin \"\$SHUTDOWN_PIN\" >> /data/in
 call %ADB_TOOL% shell "sushell -c 'echo  >> /data/init.d/powerblock'"
 call %ADB_TOOL% shell "sushell -c 'echo setDirectionOutput \"\$STATUS_PIN\" >> /data/init.d/powerblock'"
 call %ADB_TOOL% shell "sushell -c 'echo setDirectionInput \"\$SHUTDOWN_PIN\" >> /data/init.d/powerblock'"
+echo 75%%
 call %ADB_TOOL% shell "sushell -c 'echo  >> /data/init.d/powerblock'"
 call %ADB_TOOL% shell "sushell -c 'echo setPinValue \"\$STATUS_PIN\" \"\$STATE_ON\" >> /data/init.d/powerblock'"
 call %ADB_TOOL% shell "sushell -c 'echo  >> /data/init.d/powerblock'"
@@ -108,12 +110,10 @@ call %ADB_TOOL% shell "sushell -c 'echo >> /data/init.d/powerblock'"
 
 call %ADB_TOOL% shell "sushell -c 'chown root:system /data/init.d/powerblock'"
 call %ADB_TOOL% shell "sushell -c 'chmod 0755 /data/init.d/powerblock'"
+echo 100%%. Done.
 
+echo Finished file transfer and configuration. Rebooting the device. 
 call %ADB_TOOL% shell reboot
-
-@echo off
-
-echo Disconnecting from device
 call %ADB_TOOL% disconnect
 
-echo Finished file transfer and configuration. Rebooting.
+echo DONE.
