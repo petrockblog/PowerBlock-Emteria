@@ -20,13 +20,15 @@ This repository contains the installer for the [PowerBlock](https://blog.petrock
 
 ## Installation Instructions
 
-1. If you have not done so already, make sure to do all the described steps from the Section __"Pre-Requisites"__ above.
+0. If you have not done so already, make sure to do all the described steps from the Section __"Pre-Requisites"__ above.
 
-2. Execute the batch file `installDriver.bat`.
+1. We recommend to have the PowerBlock and switch attached to the Raspberry Pi when installing the driver. Make sure to also connect the USB power to the PowerBlock. The driver installation should also work without the PowerBlock being attached, though.
 
-3. Shutdown your Emteria device and connect the PowerBlock with the Raspberry Pi. Make sure to also connect the USB power to the PowerBlock.
+2. Execute the batch file `installDriver.bat` from the Windows command line.
 
-4. You should now be able to start and shutdown your Emteria device with the PowerBlock.
+3. When the installation has finished, your Emteria device reboots and the PowerBlock status LED should indicate that it is working by showing a continuous signal.
+
+4. You are now able to start and shutdown your Emteria device with the PowerBlock.
 
 
 Good luck with your project!
