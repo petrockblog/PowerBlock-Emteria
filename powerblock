@@ -5,10 +5,7 @@
 # Process: new
 ### END INIT INFO
 
-VERSION_NUMBER="1.2.0"
-
-# Common path for all GPIO access
-BASE_GPIO_PATH=/sys/class/gpio
+VERSION_NUMBER="2.0.0"
 
 # Assign names to GPIO pin numbers
 STATUS_PIN=17
@@ -20,49 +17,18 @@ STATE_OFF="0"
 
 doRun=$STATE_ON
 
-# Exports a pin if not already exported
-# Parameter $1: pin number
-exportPin() {
-  if [ ! -e "$BASE_GPIO_PATH/gpio$1" ]; then
-    echo "$1" > "$BASE_GPIO_PATH/export"
-  fi
-}
-
-# Set a pin as an output
-# Parameter $1: pin number to be set as output pin
-setDirectionOutput() {
-  echo "out" > "$BASE_GPIO_PATH/gpio$1/direction"
-}
-
-# Set a pin as an output
-# Parameter $1: pin number to be set as output pin
-setDirectionInput() {
-  echo "in" > "$BASE_GPIO_PATH/gpio$1/direction"
-}
-
-# Set value of a pin
-# Parameter $1: pin number
-# Parameter $2: output value. Can be 0 or 1
 setPinValue() {
-  echo "$2" > "$BASE_GPIO_PATH/gpio$1/value"
+  LD_LIBRARY_PATH=/data/user/libgpiod /data/user/libgpiod/gpioset --chip 4 --toggle 0 $1=$2
 }
 
-# Returns the current pin value
-# Parameter $1: pin number to be read from
 getPinValue() {
-  cat "$BASE_GPIO_PATH/gpio$1/value"
+  LD_LIBRARY_PATH=/data/user/libgpiod /data/user/libgpiod/gpioget --chip 4 --numeric $1
 }
 
 doShutdown() {
   reboot -p  # Android call for shutting down the system
   doRun=$STATE_OFF
 }
-
-exportPin "$STATUS_PIN"
-exportPin "$SHUTDOWN_PIN"
-
-setDirectionOutput "$STATUS_PIN"
-setDirectionInput "$SHUTDOWN_PIN"
 
 setPinValue "$STATUS_PIN" "$STATE_ON"
 
